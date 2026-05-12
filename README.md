@@ -82,19 +82,17 @@ I'm a senior undergraduate student majoring in **Biotechnology** at Guangxi Medi
 
 ## 🎓 Education
 **Guangxi Medical University** | B.S. in Biotechnology | 2023.09 - 2027.06
-- GPA: 3.7/4.0 | **Ranked 1st out of [填专业总人数] students**
+- GPA: 3.7/5.0 | **Ranked 1st out of 50 students**
 - Core Courses: Molecular Biology, Biochemistry, Bioinformatics, Genetics, Biostatistics
 
 **Guangxi Medical University** | Minor in English | 2024.09 - 2026.06
-- GPA: 3.7/4.0 | Ranked 2nd out of [填辅修总人数] students
+- GPA: 3.7/5.0 | Ranked 2nd out of 20 students
 
 ---
 
 ## 📫 Contact Me
 - Email: sereina0828@gmail.com
 - GitHub: [@suuuuuuunaaaaaaa](https://github.com/suuuuuuunaaaaaaa)
-- (Optional) ResearchGate: [你的ResearchGate链接]
-- (Optional) LinkedIn: [你的LinkedIn链接]
 
 ---
 
