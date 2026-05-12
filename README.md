@@ -91,7 +91,7 @@ I'm a senior undergraduate student majoring in **Biotechnology** at Guangxi Medi
 
 ## 📫 Contact Me
 - Email: sereina0828@gmail.com
-- GitHub: [@suuuuuuunaaaaaaa](https://github.com/suuuuuuunaaaaaaa)
+- GitHub: [@lydelle-veynd](https://github.com/lydelle-veynd)
 
 ---
 
