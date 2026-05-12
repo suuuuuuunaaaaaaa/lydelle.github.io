@@ -1,4 +1,3 @@
-# lydelle.github.io
 # Hi, I'm Lydelle (孙雅洁) 👋
 
 I'm a senior undergraduate student majoring in **Biotechnology** at Guangxi Medical University, ranked **1st in my major** (GPA 3.7/4.0), and minoring in English. I'm passionate about bioinformatics, molecular biology, and the intersection of AI and biomedicine.
