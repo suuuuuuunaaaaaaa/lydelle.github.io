@@ -3,169 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lydelle Veynd | 孙雅洁</title>
+    <title>Lydelle Veynd | 孫雅潔</title>
     <style>
         :root {
-            --bg: #000000;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --accent: #2997ff;
-            --text-main: #f5f5f7;
-            --text-dim: #86868b;
+            --bg: #111111;
+            --text-p: #a1a1a6;
+            --text-h: #ffffff;
+            --accent: #d2d2d7;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC","PingFang SC", sans-serif;
+            color: var(--text-p);
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+        .wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
 
-        /* 超大文字展示区 */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at 50% 50%, #1d1d1f 0%, #000 100%);
-        }
+        /* 顶部导航：极简 */
+        nav { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 120px; color: var(--accent); }
 
-        .hero h1 {
-            font-size: clamp(48px, 10vw, 96px);
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* 核心区：照片与名字的交织 */
+        .hero-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: end; margin-bottom: 150px; }
 
-        .hero p {
-            font-size: 24px;
-            color: var(--accent);
-            margin-top: 20px;
-            font-weight: 500;
-        }
+        .hero-text h1 { font-size: clamp(60px, 8vw, 120px); line-height: 0.9; margin: 0; color: var(--text-h); font-weight: 600; letter-spacing: -4px; }
+        .hero-text p { font-size: 20px; margin-top: 30px; max-width: 400px; color: var(--accent); }
 
-        /* 苹果标志性的 Bento Grid 布局 */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 80px 0;
-        }
+        .profile-img-container { position: relative; width: 100%; overflow: hidden; border-radius: 4px; }
+        .profile-img-container img { width: 100%; display: block; filter: grayscale(20%); transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+        .profile-img-container:hover img { transform: scale(1.05); }
 
-        .bento-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .bento-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* 重点卡片占两列 */
-        .span-2 { grid-column: span 2; }
-
-        .card-label { color: var(--text-dim); font-size: 14px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
-        .card-title { font-size: 32px; font-weight: 600; margin: 0; }
-        .card-value { font-size: 64px; font-weight: 700; color: #fff; margin: 10px 0; }
-        .card-desc { color: var(--text-dim); font-size: 17px; line-height: 1.5; }
-
-        /* 奖状区域：横向滚动或大图 */
-        .award-section { padding-bottom: 100px; }
-        .award-box {
-            background: linear-gradient(145deg, #1d1d1f, #000);
-            border-radius: 40px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-dim);
-            font-size: 18px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .contact-footer {
-            text-align: center;
-            padding: 100px 0;
-            border-top: 1px solid #333;
-        }
-
-        .contact-btn {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: 500;
-        }
+        /* 内容板块：非对称 */
+        .content-block { margin-bottom: 150px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
+        .block-label { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); border-top: 1px solid #333; padding-top: 20px; height: fit-content; }
         
-        .contact-btn:hover { text-decoration: underline; }
+        .block-main h2 { font-size: 42px; color: var(--text-h); margin-top: 0; font-weight: 500; }
+        .block-main p { font-size: 18px; margin-bottom: 30px; }
+
+        /* 奖状展示：瀑布流感 */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
+        .gallery-item { background: #1a1a1a; padding: 20px; border-radius: 2px; }
+        .gallery-item img { width: 100%; height: auto; margin-bottom: 15px; }
+        .gallery-item span { font-size: 13px; color: var(--accent); }
+
+        /* 重点数据高亮 */
+        .highlight-data { font-size: 80px; color: var(--text-h); font-weight: 700; display: block; margin-bottom: 5px; }
+        .highlight-label { font-size: 14px; text-transform: uppercase; color: var(--accent); }
+
+        footer { margin-top: 200px; border-top: 1px solid #333; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .email-link { font-size: 24px; color: var(--text-h); text-decoration: none; border-bottom: 1px solid var(--text-h); padding-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .hero-section, .content-block { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 60px; }
+        }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="container">
-            <h1>孙雅洁</h1>
-            <p>广西医科大学 · 生物技术 · 2023级</p>
-        </div>
-    </section>
+    <div class="wrapper">
+        <nav>
+            <div>Lydelle Veynd</div>
+            <div>2023 - 2027</div>
+        </nav>
 
-    <div class="container">
-        <div class="grid-container">
-            <div class="bento-card">
-                <div class="card-label">Overall GPA</div>
-                <div class="card-value">3.74</div>
-                <div class="card-desc">Scale: 5.0</div>
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>孙雅洁</h1>
+                <p>广西医科大学 · 生物技术专业<br>在生命微观世界与数据宏观视野之间寻找平衡。</p>
             </div>
-
-            <div class="bento-card">
-                <div class="card-label">Major Rank</div>
-                <div class="card-value">#1</div>
-                <div class="card-desc">Top 1% of the class</div>
+            <div class="profile-img-container">
+                <!-- 你的职业照片 -->
+                <img src="assets/profile.jpg" alt="孙雅洁 职业照片">
             </div>
+        </section>
 
-            <div class="bento-card">
-                <div class="card-label">Language</div>
-                <div class="card-value">C6</div>
-                <div class="card-desc">CET-6 Qualified</div>
-            </div>
-
-            <div class="bento-card span-2">
-                <div class="card-label">About Me</div>
-                <div class="card-title">用数据驱动生命科学。</div>
-                <p class="card-desc">目前就读于生物技术专业，深耕分子生物学基础的同时，热衷于探索 R 语言在生信数据流中的自动化应用。2027年毕业，期待在生物医学交叉领域创造价值。</p>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-label">Skills</div>
-                <p class="card-desc">Wet Lab: 克隆, 细胞培养, WB<br>Dry Lab: R 语言, 数据自动化</p>
+        <div class="content-block">
+            <div class="block-label">01 / SNAPSHOT</div>
+            <div class="block-main">
+                <div style="display: flex; gap: 60px;">
+                    <div>
+                        <span class="highlight-data">3.74</span>
+                        <span class="highlight-label">GPA (Scale 5.0)</span>
+                    </div>
+                    <div>
+                        <span class="highlight-data">#1</span>
+                        <span class="highlight-label">MAJOR RANKING</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <h2 style="font-size: 40px; margin-bottom: 30px;">证明与荣誉</h2>
-        <div class="award-section">
-            <div class="award-box">
-                这里将展示你的“挑战杯”或其他证书照片
+        <div class="content-block">
+            <div class="block-label">02 / EXPERTISE</div>
+            <div class="block-main">
+                <h2>干湿结合的科研能力。</h2>
+                <p>作为生物技术专业的学生，我不仅在湿实验中精准操作（克隆构建、细胞培养），更在干实验中寻求效率。在挑战杯竞赛中，我独立编写了 R 语言脚本，实现了对 151 余项项目文件的自动匹配与分类。</p>
             </div>
         </div>
 
-        <div class="contact-footer">
-            <p style="color: var(--text-dim); margin-bottom: 20px;">Ready for new challenges.</p>
-            <a href="mailto:sereina0828@gmail.com" class="contact-btn">sereina0828@gmail.com</a>
+        <div class="content-block">
+            <div class="block-label">03 / EVIDENCE</div>
+            <div class="block-main">
+                <h2>荣誉与证明。</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <!-- 你的奖状图片 -->
+                        <img src="assets/award1.jpg" alt="奖状一">
+                        <span>专业排名第一证明</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/award2.jpg" alt="奖状二">
+                        <span>“挑战杯”获奖证书</span>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <footer>
+            <div>
+                <a href="mailto:sereina0828@gmail.com" class="email-link">sereina0828@gmail.com</a>
+            </div>
+            <div style="text-align: right; font-size: 13px;">
+                GUANGXI MEDICAL UNIVERSITY<br>BIOTECHNOLOGY MAJOR
+            </div>
+        </footer>
     </div>
 
 </body>
