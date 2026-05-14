@@ -3,135 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lydelle Veynd | 孫雅潔</title>
+    <title>孙雅洁 Lydelle Veynd - Personal Page</title>
     <style>
         :root {
-            --bg: #111111;
-            --text-p: #a1a1a6;
-            --text-h: #ffffff;
-            --accent: #d2d2d7;
+            --bg-color: #f9fbfa;
+            --sidebar-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --accent-color: #5E7A8A; /* 灰蓝色 */
+            --accent-light: #f0f4f8;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
         }
 
+        * { box-sizing: border-box; }
         body {
-            background-color: var(--bg);
-            color: var(--text-p);
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", sans-serif;
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
+            display: flex;
+            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        .wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+            z-index: 100;
+        }
 
-        /* 顶部导航：极简 */
-        nav { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 120px; color: var(--accent); }
+        .profile-img {
+            width: 150px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background-color: #eee;
+        }
 
-        /* 核心区：照片与名字的交织 */
-        .hero-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: end; margin-bottom: 150px; }
+        .sidebar h1 {
+            font-size: 1.4rem;
+            margin: 10px 0 5px 0;
+            color: var(--accent-color);
+        }
 
-        .hero-text h1 { font-size: clamp(60px, 8vw, 120px); line-height: 0.9; margin: 0; color: var(--text-h); font-weight: 600; letter-spacing: -4px; }
-        .hero-text p { font-size: 20px; margin-top: 30px; max-width: 400px; color: var(--accent); }
+        .sidebar .en-name {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
 
-        .profile-img-container { position: relative; width: 100%; overflow: hidden; border-radius: 4px; }
-        .profile-img-container img { width: 100%; display: block; filter: grayscale(20%); transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
-        .profile-img-container:hover img { transform: scale(1.05); }
+        .nav-menu { width: 100%; margin-top: 20px; }
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+        }
 
-        /* 内容板块：非对称 */
-        .content-block { margin-bottom: 150px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
-        .block-label { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); border-top: 1px solid #333; padding-top: 20px; height: fit-content; }
-        
-        .block-main h2 { font-size: 42px; color: var(--text-h); margin-top: 0; font-weight: 500; }
-        .block-main p { font-size: 18px; margin-bottom: 30px; }
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 280px;
+            padding: 60px 50px;
+            max-width: 1000px;
+            flex: 1;
+        }
 
-        /* 奖状展示：瀑布流感 */
-        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
-        .gallery-item { background: #1a1a1a; padding: 20px; border-radius: 2px; }
-        .gallery-item img { width: 100%; height: auto; margin-bottom: 15px; }
-        .gallery-item span { font-size: 13px; color: var(--accent); }
+        section { margin-bottom: 60px; }
 
-        /* 重点数据高亮 */
-        .highlight-data { font-size: 80px; color: var(--text-h); font-weight: 700; display: block; margin-bottom: 5px; }
-        .highlight-label { font-size: 14px; text-transform: uppercase; color: var(--accent); }
+        .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 0 0 40px 0;
+            line-height: 1.8;
+        }
 
-        footer { margin-top: 200px; border-top: 1px solid #333; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; }
-        .email-link { font-size: 24px; color: var(--text-h); text-decoration: none; border-bottom: 1px solid var(--text-h); padding-bottom: 5px; }
+        h2.section-title {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2.section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 20px;
+        }
+
+        /* Project Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+        }
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .card-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
+        .card-date { font-size: 0.85rem; color: var(--text-muted); }
+        .card-role {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent-color);
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        /* Skills Tags */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
 
         @media (max-width: 768px) {
-            .hero-section, .content-block { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 60px; }
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .main-content { margin-left: 0; padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="wrapper">
-        <nav>
-            <div>Lydelle Veynd</div>
-            <div>2023 - 2027</div>
+    <aside class="sidebar">
+        <!-- 提示：将照片重命名为 profile.jpg 放在同一文件夹下 -->
+        <img src="profile.jpg" alt="孙雅洁" class="profile-img">
+        <h1>孙雅洁</h1>
+        <div class="en-name">Lydelle Veynd</div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+            广西医科大学 | 生物技术<br>
+            GPA: 3.74 (1/50)
+        </p>
+        <nav class="nav-menu">
+            <a href="#about" class="nav-link">关于我</a>
+            <a href="#research" class="nav-link">科研经历</a>
+            <a href="#awards" class="nav-link">获奖荣誉</a>
+            <a href="#skills" class="nav-link">专业技能</a>
         </nav>
+        <div style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+            sereina0828@gmail.com
+        </div>
+    </aside>
 
-        <section class="hero-section">
-            <div class="hero-text">
-                <h1>孙雅洁</h1>
-                <p>广西医科大学 · 生物技术专业<br>在生命微观世界与数据宏观视野之间寻找平衡。</p>
+    <main class="main-content">
+        <section id="about">
+            <div class="quote">
+                “在湿润的南宁，我于实验室的微观世界里探寻生命的逻辑。从生物技术到生物信息学的跨越，是我对精准医学最诚挚的注脚。”
             </div>
-            <div class="profile-img-container">
-                <!-- 你的职业照片 -->
-                <img src="assets/profile.jpg" alt="孙雅洁 职业照片">
+            <p>
+                我是孙雅洁，2023级生物技术本科生。我致力于通过多模态生物信息学方法解析复杂生命机制。
+                擅长 R 语言自动化工作流与 Nature 风格可视化表达。
+            </p>
+        </section>
+
+        <section id="research">
+            <h2 class="section-title">科研经历</h2>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">鼻咽癌微环境中乳酸化修饰激活 NSUN2 表达研究</span>
+                    <span class="card-date">2023.04 - 2024.04</span>
+                </div>
+                <span class="card-role">项目负责人 | 校级大创</span>
+                <p>解析“代谢-表观-免疫”调控轴，负责方案设计、实验操作及论文撰写。</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Agentic AI For Medical Education (Grind-Med)</span>
+                    <span class="card-date">2026.01</span>
+                </div>
+                <span class="card-role">主讲/核心成员 | 国际交流</span>
+                <p>构建医学生三层学习辅助体系，负责核心创新点提炼及全英文汇报。</p>
             </div>
         </section>
 
-        <div class="content-block">
-            <div class="block-label">01 / SNAPSHOT</div>
-            <div class="block-main">
-                <div style="display: flex; gap: 60px;">
-                    <div>
-                        <span class="highlight-data">3.74</span>
-                        <span class="highlight-label">GPA (Scale 5.0)</span>
-                    </div>
-                    <div>
-                        <span class="highlight-data">#1</span>
-                        <span class="highlight-label">MAJOR RANKING</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <section id="awards">
+            <h2 class="section-title">获奖荣誉</h2>
+            <ul>
+                <li>2025年“外研社·国才杯”英语综合能力赛项 <b>国家级金奖</b></li>
+                <li>2025年 AI 赋能千行百业超级联赛 <b>全国第8名</b></li>
+                <li>2025年全国大学生数学建模竞赛 <b>省级二等奖</b></li>
+                <li>2023-2024学年 <b>广西壮族自治区人民政府奖学金</b></li>
+            </ul>
+        </section>
 
-        <div class="content-block">
-            <div class="block-label">02 / EXPERTISE</div>
-            <div class="block-main">
-                <h2>干湿结合的科研能力。</h2>
-                <p>作为生物技术专业的学生，我不仅在湿实验中精准操作（克隆构建、细胞培养），更在干实验中寻求效率。在挑战杯竞赛中，我独立编写了 R 语言脚本，实现了对 151 余项项目文件的自动匹配与分类。</p>
+        <section id="skills">
+            <h2 class="section-title">专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">R / Python / MATLAB</div>
+                <div class="skill-tag">qPCR / WB / ELISA</div>
+                <div class="skill-tag">基因组学分析</div>
+                <div class="skill-tag">Nature Style 绘图</div>
+                <div class="skill-tag">学术英语汇报</div>
             </div>
-        </div>
-
-        <div class="content-block">
-            <div class="block-label">03 / EVIDENCE</div>
-            <div class="block-main">
-                <h2>荣誉与证明。</h2>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <!-- 你的奖状图片 -->
-                        <img src="assets/award1.jpg" alt="奖状一">
-                        <span>专业排名第一证明</span>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/award2.jpg" alt="奖状二">
-                        <span>“挑战杯”获奖证书</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <div>
-                <a href="mailto:sereina0828@gmail.com" class="email-link">sereina0828@gmail.com</a>
-            </div>
-            <div style="text-align: right; font-size: 13px;">
-                GUANGXI MEDICAL UNIVERSITY<br>BIOTECHNOLOGY MAJOR
-            </div>
-        </footer>
-    </div>
-
+        </section>
+    </main>
 </body>
 </html>
