@@ -12,7 +12,8 @@
             --accent-color: #0071e3;
             --bg-color: #f5f5f7;
             --card-bg: #ffffff;
-            --border-radius: 12px;
+            --border-radius-card: 14px;
+            --border-radius-avatar: 18px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,23 +25,29 @@
         }
 
         .container {
-            max-width: 800px; margin: 0 auto; background: var(--card-bg);
-            padding: 50px; border-radius: var(--border-radius);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            max-width: 850px; margin: 0 auto; background: var(--card-bg);
+            padding: 50px; border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
+        /* Header Section with Square Avatar */
         .header { display: table; width: 100%; border-bottom: 1px solid #e5e5e7; padding-bottom: 30px; margin-bottom: 35px; }
         .header-text { display: table-cell; vertical-align: middle; }
-        .header-avatar { display: table-cell; vertical-align: middle; width: 110px; text-align: right; }
-        .header-avatar img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #e5e5e7; }
-        h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
+        .header-avatar { display: table-cell; vertical-align: middle; width: 115px; text-align: right; }
+        .header-avatar img { 
+            width: 105px; height: 105px; 
+            border-radius: var(--border-radius-avatar); /* Premium Square Look */
+            object-fit: cover; border: 1px solid #e5e5e7;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
         
+        h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
         .contact-info { font-size: 14px; color: var(--secondary-color); line-height: 1.6; }
         .contact-info a { color: var(--accent-color); text-decoration: none; }
         .contact-info a:hover { text-decoration: underline; }
 
-        section { margin-bottom: 35px; }
-        h2 { font-size: 20px; font-weight: 600; border-left: 3px solid var(--primary-color); padding-left: 10px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        section { margin-bottom: 40px; }
+        h2 { font-size: 19px; font-weight: 600; border-left: 3px solid var(--primary-color); padding-left: 10px; margin-bottom: 22px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .item { margin-bottom: 22px; }
         .item-title-row { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
@@ -51,21 +58,46 @@
         li { font-size: 14px; position: relative; padding-left: 15px; margin-bottom: 5px; color: #333336; }
         li::before { content: "•"; position: absolute; left: 0; color: var(--secondary-color); }
 
-        /* Links for interactive modals */
-        .doc-link { font-size: 13px; color: var(--accent-color); text-decoration: none; margin-left: 6px; font-weight: 400; cursor: pointer; }
-        .doc-link:hover { text-decoration: underline; }
-        .action-links { margin-top: 4px; display: block; }
+        /* Modern Horizontal Scroll Showcase (Bento Style) */
+        .gallery-wrapper {
+            position: relative; margin: 15px 0 25px 0;
+        }
+        .gallery-container {
+            width: 100%; overflow-x: auto; white-space: nowrap;
+            padding: 12px 4px 20px 4px; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        /* Custom Premium Scrollbar */
+        .gallery-container::-webkit-scrollbar { height: 6px; }
+        .gallery-container::-webkit-scrollbar-track { background: #f5f5f7; border-radius: 10px; }
+        .gallery-container::-webkit-scrollbar-thumb { background: #d2d2d7; border-radius: 10px; }
+        .gallery-container::-webkit-scrollbar-thumb:hover { background: #86868b; }
 
-        /* Honors List Layout */
-        .honor-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
-        .honor-item { font-size: 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #e5e5e7; padding-bottom: 4px; }
-        .honor-item:last-child { border-bottom: none; }
-        .honor-name { color: #333336; }
+        .cert-card {
+            display: inline-block; width: 210px; margin-right: 18px;
+            background: #ffffff; border: 1px solid #e5e5e7;
+            border-radius: var(--border-radius-card); padding: 12px;
+            vertical-align: top; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .cert-card img {
+            width: 100%; height: 145px; object-fit: contain;
+            background: #fafafa; border-radius: 8px; margin-bottom: 10px;
+            border: 1px solid #f0f0f2;
+        }
+        .cert-caption {
+            font-size: 12px; color: #1d1d1f; white-space: normal;
+            line-height: 1.4; font-weight: 500; height: 34px;
+            overflow: hidden; display: -webkit-box;
+            -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        }
 
-        /* Lightbox Modal */
-        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); justify-content: center; align-items: center; cursor: zoom-out; }
-        .modal-content { max-width: 85%; max-height: 85%; border-radius: var(--border-radius); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-        .modal.show .modal-content { transform: scale(1); }
+        .inline-link { font-size: 13px; color: var(--accent-color); text-decoration: none; font-weight: 400; margin-left: 5px;}
+        .inline-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -108,174 +140,126 @@
     </section>
 
     <section>
-        <h2>Honors & Awards</h2>
-        <div class="honor-list">
-            <div class="honor-item">
-                <span class="honor-name">National Encouragement Scholarship (2025-2026)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0001.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Excellent Communist Youth League Cadre (2025-2026)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0002.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">National Encouragement Scholarship (2024-2025)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0003.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Merit Student (2024-2025)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0004.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Advanced Individual of "Sanxiaxiang" Social Practice (2024-2025)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0005.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Excellent Club Backbone (2024-2025)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0006.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Government Scholarship of Guangxi Zhuang Autonomous Region (2023-2024)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_1392.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Excellent Student Cadre (2023-2024)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0008.JPG')">[View Certificate]</a>
-            </div>
-            <div class="honor-item">
-                <span class="honor-name">Excellent Communist Youth League Member (2023-2024)</span>
-                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0009.JPG')">[View Certificate]</a>
-            </div>
-        </div>
-    </section>
+        <h2>Honors & Credentials Gallery</h2>
+        <div class="gallery-wrapper">
+            <div class="gallery-container">
+                
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1392.JPG" alt="Certificate">
+                    <div class="cert-caption">Guangxi Government Scholarship (Top 1%)</div>
+                </div>
 
-    <section>
-        <h2>Competitions</h2>
-        <div class="item">
-            <div class="item-title-row">
-                AI-Driven Traditional Chinese Medicine (TCM) Quality Monitoring System <span class="item-duration">2025</span>
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1397.JPG" alt="Certificate">
+                    <div class="cert-caption">National Gold Medal - TCM Quality Monitoring System</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1403.JPG" alt="Certificate">
+                    <div class="cert-caption">Provincial 2nd Prize - National Mathematical Modeling Contest</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1402.JPG" alt="Certificate">
+                    <div class="cert-caption">National Gold Medal - FLTRP·ETIC Cup English Contest</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1400.JPG" alt="Certificate">
+                    <div class="cert-caption">Academic Honor & Innovation Award Certificate</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1404.JPG" alt="Certificate">
+                    <div class="cert-caption">National Encouragement Scholarship Certificate</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1396.JPG" alt="Certificate">
+                    <div class="cert-caption">Excellent Communist Youth League Cadre Honor</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1401.JPG" alt="Certificate">
+                    <div class="cert-caption">Excellent Student Leader Award Certificate</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1398.JPG" alt="Certificate">
+                    <div class="cert-caption">"Sanxiaxiang" Social Practice Advanced Individual</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1399.JPG" alt="Certificate">
+                    <div class="cert-caption">Outstanding Student Association Backbone Honor</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1391.JPG" alt="Certificate">
+                    <div class="cert-caption">University-level Merit Student (Three-Good Student)</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1394.JPG" alt="Certificate">
+                    <div class="cert-caption">International Academic Exchange Presentation Photo</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1395.JPG" alt="Certificate">
+                    <div class="cert-caption">Biological Science & Engineering Contest 1st Prize</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="assets/img/certificates/IMG_1393.JPG" alt="Certificate">
+                    <div class="cert-caption">Petri Dish Creative Painting Competition Certificate</div>
+                </div>
+
             </div>
-            <div class="item-meta-row">Team Leader | AI Empowering Industries Super League</div>
-            <ul>
-                <li><strong>Award:</strong> National Gold Medal (Ranked 8 / 2000) <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
-                <li>Coordinated the development of a multi-modal AI identification engine and a database for TCM traceability.</li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title-row">
-                FLTRP·ETIC Cup English Comprehensive Ability Competition <span class="item-duration">2025</span>
-            </div>
-            <div class="item-meta-row">Participant | National Level</div>
-            <ul>
-                <li><strong>Award:</strong> National Gold Medal <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title-row">
-                Mathematical Modeling of Multi-Light Interference Based on Infrared Interferometry <span class="item-duration">2025</span>
-            </div>
-            <div class="item-meta-row">Core Member | National Undergraduate Mathematical Modeling Contest</div>
-            <ul>
-                <li><strong>Award:</strong> Provincial Second Prize <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title-row">
-                Creative Painting on Petri Dishes Competition <span class="item-duration">2023</span>
-            </div>
-            <div class="item-meta-row">Core Member | Biological Science and Engineering Innovation Contest</div>
-            <ul>
-                <li><strong>Award:</strong> Provincial First Prize <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
-            </ul>
         </div>
     </section>
 
     <section>
         <h2>Research Experience</h2>
-        
-        <div class="item">
-            <div class="item-title-row">
-                Agentic AI For Medical Education - Grind-Med <span class="item-duration">Jan. 2026</span>
-            </div>
-            <div class="item-meta-row">
-                Project Leader & Speaker | International Academic Exchange Project
-                <span class="action-links">
-                    <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_cert.JPG')">[View Certificate]</a>
-                    <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_photo.JPG')">[View Presentation Photo]</a>
-                </span>
-            </div>
-            <ul>
-                <li>Developed a learning support framework powered by Agentic AI to foster clinical reasoning for medical students.</li>
-                <li>Extracted core project innovations, formulated the final project summary, and served as the English presenter.</li>
-            </ul>
-        </div>
-
         <div class="item">
             <div class="item-title-row">
                 Origin, Evolution, and Transmission Patterns of Hypervirulent Kp Strains <span class="item-duration">Apr. 2025 – Apr. 2026</span>
             </div>
-            <div class="item-meta-row">
-                Principal Investigator | Provincial Undergraduate Innovation Program
-                <span class="action-links">
-                    <a class="doc-link" onclick="openModal('assets/img/certificates/kp_draft.jpg')">[View Draft Manuscript]</a>
-                    <a class="doc-link" href="https://github.com/lydelle-veynd" target="_blank">[View R Scripts on GitHub]</a>
-                </span>
-            </div>
+            <div class="item-meta-row">Principal Investigator | Provincial Undergraduate Innovation Program</div>
             <ul>
-                <li>Conducted comparative genomics analysis to track the evolutionary trajectory of hyper-resistant Kp strains.</li>
+                <li>Conducted comparative genomics analysis to track the evolutionary trajectory of hyper-resistant Kp strains. <a class="inline-link" href="https://github.com/lydelle-veynd" target="_blank">[View R Scripts on GitHub]</a></li>
             </ul>
         </div>
-
         <div class="item">
             <div class="item-title-row">
                 Mitochondria-Targeted Nano-Drug Delivery System against Tumor Multidrug Resistance <span class="item-duration">Mar. 2026</span>
             </div>
-            <div class="item-meta-row">
-                Core Member | "Challenge Cup" Entrepreneurship Competition
-                <span class="action-links">
-                    <a class="doc-link" onclick="openModal('assets/img/certificates/challenge_model.jpg')">[View Financial Model]</a>
-                </span>
-            </div>
+            <div class="item-meta-row">Core Member | "Challenge Cup" Entrepreneurship Competition</div>
             <ul>
-                <li>Evaluated a drug-repurposing strategy utilizing an intracellular oxygen carrier system to counteract multidrug resistance.</li>
+                <li>Evaluated an intracellular oxygen carrier system to counteract tumor multidrug resistance.</li>
             </ul>
         </div>
-
         <div class="item">
             <div class="item-title-row">
                 Mechanism of Lactylation Modulating NSUN2 Expression in Nasopharyngeal Carcinoma <span class="item-duration">Apr. 2023 – Apr. 2024</span>
             </div>
-            <div class="item-meta-row">
-                Principal Investigator | University Undergraduate Innovation Program
-                <span class="action-links">
-                    <a class="doc-link" onclick="openModal('assets/img/certificates/nsun2_proposal.jpg')">[View Research Proposal]</a>
-                </span>
-            </div>
+            <div class="item-meta-row">Principal Investigator | University Undergraduate Innovation Program</div>
             <ul>
-                <li>Investigated mechanisms through which lactylation activates NSUN2 expression under metabolic reprogramming.</li>
+                <li>Investigated epigenetic regulatory axes and lactylation patterns under cell metabolic reprogramming.</li>
             </ul>
         </div>
     </section>
 
+    <section>
+        <h2>Technical & Language Skills</h2>
+        <div class="item">
+            <ul>
+                <li><strong>Wet Lab:</strong> qPCR, Western Blot (WB), ELISA, Plasmid Construction, Cell Culture, Cryopreservation.</li>
+                <li><strong>Dry Lab:</strong> R, Python, MATLAB, Generative AI (Gemini/ChatGPT) for data analysis pipelines.</li>
+                <li><strong>Languages:</strong> Native Mandarin, English (CET-6, Minor Degree in English).</li>
+            </ul>
+        </div>
+    </section>
 </div>
 
-<div id="certModal" class="modal" onclick="closeModal()">
-    <img class="modal-content" id="imgTarget">
-</div>
-
-<script>
-    function openModal(imgSrc) {
-        const modal = document.getElementById('certModal');
-        const modalImg = document.getElementById('imgTarget');
-        modal.style.display = "flex";
-        modalImg.src = imgSrc;
-        setTimeout(() => { modal.classList.add('show'); }, 10);
-    }
-    function closeModal() {
-        const modal = document.getElementById('certModal');
-        modal.classList.remove('show');
-        setTimeout(() => { modal.style.display = "none"; }, 300);
-    }
-</script>
 </body>
 </html>
