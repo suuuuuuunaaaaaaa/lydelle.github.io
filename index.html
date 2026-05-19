@@ -3,262 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yajie Sun (Lydelle Veynd) - Curriculum Vitae</title>
+    <title>Yajie Sun (Lydelle Veynd) - Academic Portfolio</title>
     <style>
-        /* Apple-style Minimalist Design System */
+        /* Apple & Premium Bento Design System */
         :root {
             --primary-color: #1d1d1f;
             --secondary-color: #86868b;
             --accent-color: #0071e3;
             --bg-color: #f5f5f7;
             --card-bg: #ffffff;
-            --border-radius-card: 14px;
-            --border-radius-avatar: 18px;
+            --border-color: #e5e5e7;
+            --tag-bg: #f5f5f7;
+            --tag-color: #1d1d1f;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--primary-color); background-color: var(--bg-color);
-            line-height: 1.5; padding: 40px 20px;
+            line-height: 1.6; padding: 50px 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 850px; margin: 0 auto; background: var(--card-bg);
-            padding: 50px; border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        .portfolio-wrapper {
+            max-width: 1040px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 30px;
         }
 
-        /* Header Section with Square Avatar */
-        .header { display: table; width: 100%; border-bottom: 1px solid #e5e5e7; padding-bottom: 30px; margin-bottom: 35px; }
-        .header-text { display: table-cell; vertical-align: middle; }
-        .header-avatar { display: table-cell; vertical-align: middle; width: 115px; text-align: right; }
-        .header-avatar img { 
-            width: 105px; height: 105px; 
-            border-radius: var(--border-radius-avatar); /* Premium Square Look */
-            object-fit: cover; border: 1px solid #e5e5e7;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        /* --- BENTO GRID HEADER SECTION --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px; padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.015);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .bento-card:hover { transform: translateY(-2px); }
+
+        .card-profile { grid-column: span 2; display: flex; justify-content: space-between; align-items: center; }
+        .profile-info h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .profile-info p { font-size: 14px; color: var(--secondary-color); line-height: 1.7; }
+        .profile-info a { color: var(--accent-color); text-decoration: none; }
+        .profile-info a:hover { text-decoration: underline; }
         
-        h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
-        .contact-info { font-size: 14px; color: var(--secondary-color); line-height: 1.6; }
-        .contact-info a { color: var(--accent-color); text-decoration: none; }
-        .contact-info a:hover { text-decoration: underline; }
-
-        section { margin-bottom: 40px; }
-        h2 { font-size: 19px; font-weight: 600; border-left: 3px solid var(--primary-color); padding-left: 10px; margin-bottom: 22px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .item { margin-bottom: 22px; }
-        .item-title-row { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
-        .item-meta-row { font-size: 13px; color: var(--secondary-color); margin-bottom: 6px; }
-        .item-duration { float: right; font-weight: 400; color: var(--secondary-color); }
-
-        ul { list-style-type: none; }
-        li { font-size: 14px; position: relative; padding-left: 15px; margin-bottom: 5px; color: #333336; }
-        li::before { content: "•"; position: absolute; left: 0; color: var(--secondary-color); }
-
-        /* Modern Horizontal Scroll Showcase (Bento Style) */
-        .gallery-wrapper {
-            position: relative; margin: 15px 0 25px 0;
+        .avatar-box img {
+            width: 105px; height: 105px;
+            border-radius: 20px; object-fit: cover;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         }
+
+        .card-metrics { grid-column: span 1; display: flex; flex-direction: column; justify-content: center; gap: 15px; }
+        .metric-item { border-left: 3px solid var(--primary-color); padding-left: 12px; }
+        .metric-value { font-size: 22px; font-weight: 700; line-height: 1.2; }
+        .metric-label { font-size: 12px; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+        /* --- HORIZONTAL CREDENTIALS SHOWCASE --- */
+        .showcase-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; padding: 30px; }
+        .section-title { font-size: 18px; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+        
         .gallery-container {
             width: 100%; overflow-x: auto; white-space: nowrap;
-            padding: 12px 4px 20px 4px; scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
+            padding: 5px 2px 15px 2px; scroll-behavior: smooth;
         }
-        /* Custom Premium Scrollbar */
-        .gallery-container::-webkit-scrollbar { height: 6px; }
+        .gallery-container::-webkit-scrollbar { height: 5px; }
         .gallery-container::-webkit-scrollbar-track { background: #f5f5f7; border-radius: 10px; }
         .gallery-container::-webkit-scrollbar-thumb { background: #d2d2d7; border-radius: 10px; }
-        .gallery-container::-webkit-scrollbar-thumb:hover { background: #86868b; }
 
         .cert-card {
-            display: inline-block; width: 210px; margin-right: 18px;
-            background: #ffffff; border: 1px solid #e5e5e7;
-            border-radius: var(--border-radius-card); padding: 12px;
-            vertical-align: top; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+            display: inline-block; width: 220px; margin-right: 20px;
+            background: #ffffff; border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 12px; vertical-align: top;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-        .cert-card img {
-            width: 100%; height: 145px; object-fit: contain;
-            background: #fafafa; border-radius: 8px; margin-bottom: 10px;
-            border: 1px solid #f0f0f2;
-        }
-        .cert-caption {
-            font-size: 12px; color: #1d1d1f; white-space: normal;
-            line-height: 1.4; font-weight: 500; height: 34px;
-            overflow: hidden; display: -webkit-box;
-            -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-        }
+        .cert-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .cert-card img { width: 100%; height: 145px; object-fit: contain; background: #fafafa; border-radius: 6px; margin-bottom: 10px; }
+        .cert-caption { font-size: 12px; color: var(--primary-color); white-space: normal; line-height: 1.4; font-weight: 500; height: 34px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 
-        .inline-link { font-size: 13px; color: var(--accent-color); text-decoration: none; font-weight: 400; margin-left: 5px;}
-        .inline-link:hover { text-decoration: underline; }
+        /* --- MAIN CONTENT LAYOUT (TWO COLUMNS) --- */
+        .main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        .content-left { display: flex; flex-direction: column; gap: 25px; }
+        
+        .content-block { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; padding: 35px; }
+        .block-title { font-size: 18px; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Project Timeline Items */
+        .project-item { margin-bottom: 30px; position: relative; }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+        .project-title { font-size: 15px; font-weight: 600; color: var(--primary-color); max-width: 80%; }
+        .project-date { font-size: 13px; color: var(--secondary-color); white-space: nowrap; }
+        .project-role { font-size: 13px; color: var(--accent-color); font-weight: 500; margin-bottom: 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        
+        .tag { font-size: 11px; background: var(--tag-bg); color: var(--tag-color); padding: 2px 8px; border-radius: 4px; font-weight: 400; text-transform: uppercase; }
+        .tag-prime { background: rgba(0, 113, 227, 0.08); color: var(--accent-color); }
+
+        .project-desc { list-style-type: none; }
+        .project-desc li { font-size: 13.5px; color: #333336; position: relative; padding-left: 15px; margin-bottom: 6px; }
+        .project-desc li::before { content: "•"; position: absolute; left: 0; color: var(--secondary-color); }
+
+        /* Sidebar Skills Style */
+        .skill-group { margin-bottom: 25px; }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-title { font-size: 13px; font-weight: 600; color: var(--secondary-color); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-box { font-size: 13px; background: #f5f5f7; border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 8px; color: var(--primary-color); }
+
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .card-profile { grid-column: span 1; flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+            .main-layout { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <div class="header-text">
-            <h1>YAJIE SUN (Lydelle Veynd)</h1>
-            <div class="contact-info">
-                📍 Hongqiao District, Tianjin, China<br>
-                📱 (+86) 173-7740-9737 | ✉️ <a href="mailto:sereina0828@gmail.com">sereina0828@gmail.com</a><br>
-                🌐 <a href="https://lydelle-veynd.github.io/" target="_blank">lydelle-veynd.github.io</a>
+<div class="portfolio-wrapper">
+
+    <div class="bento-grid">
+        <div class="bento-card card-profile">
+            <div class="profile-info">
+                <h1>YAJIE SUN</h1>
+                <p style="font-weight: 500; color: var(--primary-color); margin-bottom: 8px;">Lydelle Veynd</p>
+                <p>📍 Hongqiao District, Tianjin, China</p>
+                <p>📱 (+86) 173-7740-9737 | ✉️ <a href="mailto:sereina0828@gmail.com">sereina0828@gmail.com</a></p>
+                <p>🌐 <a href="https://lydelle-veynd.github.io/">lydelle-veynd.github.io</a></p>
+            </div>
+            <div class="avatar-box">
+                <img src="profile.jpg" alt="Yajie Sun Profile Picture">
             </div>
         </div>
-        <div class="header-avatar">
-            <img src="profile.jpg" alt="Profile Image">
+
+        <div class="bento-card card-metrics">
+            <div class="metric-item">
+                <div class="metric-value">3.74 / 4.0</div>
+                <div class="metric-label">Biotechnology GPA (Rank 1/50)</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">3.7 / 4.0</div>
+                <div class="metric-label">English Minor GPA</div>
+            </div>
         </div>
     </div>
 
-    <section>
-        <h2>Education</h2>
-        <div class="item">
-            <div class="item-title-row">
-                Guangxi Medical University <span class="item-duration">Sep. 2023 – Jun. 2027</span>
-            </div>
-            <div class="item-meta-row">Bachelor of Science in Biotechnology (Major)</div>
-            <ul>
-                <li>GPA: 3.74 / 4.0 | Ranking: 1 / 50</li>
-            </ul>
+    <div class="showcase-section">
+        <div class="section-title">
+            <span>Honors & Credentials Gallery</span>
+            <span style="font-size: 12px; color: var(--secondary-color); font-weight: 400;">Swipe left/right to browse →</span>
         </div>
-        <div class="item">
-            <div class="item-title-row">
-                Guangxi Medical University <span class="item-duration">Sep. 2024 – Jun. 2026</span>
+        <div class="gallery-container">
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1392.JPG" alt="Guangxi Government Scholarship">
+                <div class="cert-caption">Guangxi Government Scholarship (Top 1%)</div>
             </div>
-            <div class="item-meta-row">Bachelor of Arts in English (Minor)</div>
-            <ul>
-                <li>GPA: 3.7 / 4.0</li>
-            </ul>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1397.JPG" alt="TCM National Gold Medal">
+                <div class="cert-caption">National Gold Medal - TCM Quality Monitoring System</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1403.JPG" alt="Mathematical Modeling Prize">
+                <div class="cert-caption">Provincial 2nd Prize - Mathematical Modeling Contest</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1402.JPG" alt="FLTRP Cup Gold Medal">
+                <div class="cert-caption">National Gold Medal - FLTRP·ETIC Cup English Contest</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1400.JPG" alt="Innovation Award">
+                <div class="cert-caption">Academic Honor & Innovation Award Certificate</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1404.JPG" alt="National Encouragement Scholarship">
+                <div class="cert-caption">National Encouragement Scholarship Certificate</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1396.JPG" alt="CYL Cadre Honor">
+                <div class="cert-caption">Excellent Communist Youth League Cadre Honor</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1401.JPG" alt="Student Leader Award">
+                <div class="cert-caption">Excellent Student Leader Award Certificate</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1398.JPG" alt="Social Practice Award">
+                <div class="cert-caption">"Sanxiaxiang" Social Practice Advanced Individual</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1399.JPG" alt="Association Backbone">
+                <div class="cert-caption">Outstanding Student Association Backbone Honor</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1391.JPG" alt="Merit Student">
+                <div class="cert-caption">University-level Merit Student (Three-Good Student)</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1394.JPG" alt="Academic Exchange">
+                <div class="cert-caption">International Academic Exchange Presentation Photo</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1395.JPG" alt="Biological Science Contest">
+                <div class="cert-caption">Biological Science & Engineering Contest 1st Prize</div>
+            </div>
+            <div class="cert-card">
+                <img src="assets/img/certificates/IMG_1393.JPG" alt="Petri Dish Painting">
+                <div class="cert-caption">Petri Dish Creative Painting Competition Certificate</div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h2>Honors & Credentials Gallery</h2>
-        <div class="gallery-wrapper">
-            <div class="gallery-container">
+    <div class="main-layout">
+        
+        <div class="content-left">
+            <div class="content-block">
+                <div class="block-title">Research & Innovation Experience</div>
                 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1392.JPG" alt="Certificate">
-                    <div class="cert-caption">Guangxi Government Scholarship (Top 1%)</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">Origin, Evolution, and Transmission Patterns of Hypervirulent and Hyper-resistant Klebsiella pneumoniae Strains</div>
+                        <div class="project-date">2025.04 - 2026.04</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Principal Investigator (Provincial Program)</span>
+                        <span class="tag tag-prime">Bioinformatics</span>
+                        <span class="tag">Genomics</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Utilized comparative genomics approaches to trace the evolutionary trajectory and transmission mechanisms of hypervirulent, multi-drug resistant Kp strains.</li>
+                        <li>Processed large-scale genomic sequence datasets, orchestrated phylogenetic tree construction, and executed rigorous statistical data validation workflows.</li>
+                        <li>Drafted the complete final academic manuscript and compiled technical research deliverable reports.</li>
+                    </ul>
                 </div>
 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1397.JPG" alt="Certificate">
-                    <div class="cert-caption">National Gold Medal - TCM Quality Monitoring System</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">Mitochondria-Targeted Nano-Drug Delivery System against Tumor Multidrug Resistance</div>
+                        <div class="project-date">2026.03</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Core Member | "Challenge Cup" Competition</span>
+                        <span class="tag">Nano-Medicine</span>
+                        <span class="tag">Financial Modeling</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Evaluated an intracellular oxygen carrier system to target mitochondria, counteracting multi-drug resistance through drug repurposing.</li>
+                        <li>Headed the quantitative data analysis, compiled financial statements, and executed profitability forecasting alongside investment return (ROI) calculations to validate commercial and clinical feasibility.</li>
+                    </ul>
                 </div>
 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1403.JPG" alt="Certificate">
-                    <div class="cert-caption">Provincial 2nd Prize - National Mathematical Modeling Contest</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">Agentic AI For Medical Education - Grind-Med</div>
+                        <div class="project-date">2026.01</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Project Leader & Speaker | International Academic Exchange</span>
+                        <span class="tag tag-prime">Agentic AI</span>
+                        <span class="tag">Medical Ed</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Engineered a three-tiered learning support framework powered by LLM agents to optimize clinical reasoning and examination workflows for medical students.</li>
+                        <li>Synthesized core technological innovations, formulated the comprehensive MIRE summary, and served as the primary English presenter for international panel reporting.</li>
+                    </ul>
                 </div>
 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1402.JPG" alt="Certificate">
-                    <div class="cert-caption">National Gold Medal - FLTRP·ETIC Cup English Contest</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">"Iridium-Companion, Intelligent Light Medicine": Innovative R&D of Coptis Chinensis Iridium Photosensitizer and Extension of Precision Tumor Therapy</div>
+                        <div class="project-date">2025.04</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Core Member | "Belt and Road" International Competition</span>
+                        <span class="tag">Wet Lab</span>
+                        <span class="tag">Oncology</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Integrated natural Coptis chinensis alkaloids with functional iridium complexes to engineer highly efficient, low-toxicity photosensitizers for precision tumor photodynamic therapy.</li>
+                        <li>Conducted pharmacodynamic data evaluations, validated in vitro and in vivo tumor inhibition efficacy, and systematically structured project汇报 and final deliverables.</li>
+                    </ul>
                 </div>
 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1400.JPG" alt="Certificate">
-                    <div class="cert-caption">Academic Honor & Innovation Award Certificate</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">Mechanism of Lactylation Modulating NSUN2 Expression in Nasopharyngeal Carcinoma</div>
+                        <div class="project-date">2023.04 - 2024.04</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Principal Investigator (University Program)</span>
+                        <span class="tag">Epigenetics</span>
+                        <span class="tag">Metabolism</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Deciphered the molecular mechanisms driving lactylation-mediated activation of NSUN2 expression within the tumor microenvironment, mapping out the "metabolism-epigenetics-immunity" regulatory axis.</li>
+                        <li>Investigated metabolic reprogramming and lactate accumulation dynamics to explore innovative radiosensitization strategies; authored the academic thesis.</li>
+                    </ul>
                 </div>
 
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1404.JPG" alt="Certificate">
-                    <div class="cert-caption">National Encouragement Scholarship Certificate</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1396.JPG" alt="Certificate">
-                    <div class="cert-caption">Excellent Communist Youth League Cadre Honor</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1401.JPG" alt="Certificate">
-                    <div class="cert-caption">Excellent Student Leader Award Certificate</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1398.JPG" alt="Certificate">
-                    <div class="cert-caption">"Sanxiaxiang" Social Practice Advanced Individual</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1399.JPG" alt="Certificate">
-                    <div class="cert-caption">Outstanding Student Association Backbone Honor</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1391.JPG" alt="Certificate">
-                    <div class="cert-caption">University-level Merit Student (Three-Good Student)</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1394.JPG" alt="Certificate">
-                    <div class="cert-caption">International Academic Exchange Presentation Photo</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1395.JPG" alt="Certificate">
-                    <div class="cert-caption">Biological Science & Engineering Contest 1st Prize</div>
-                </div>
-
-                <div class="cert-card">
-                    <img src="assets/img/certificates/IMG_1393.JPG" alt="Certificate">
-                    <div class="cert-caption">Petri Dish Creative Painting Competition Certificate</div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">"Tea Cure": Nano-scale Wound Repair Expert – Nano Tea-Bran Band-Aid</div>
+                        <div class="project-date">2024.04 - 2025.04</div>
+                    </div>
+                    <div class="project-role">
+                        <span>Principal Investigator | "Future Academic Star" Project</span>
+                        <span class="tag">Nanotechnology</span>
+                        <span class="tag">Biomaterials</span>
+                    </div>
+                    <ul class="project-desc">
+                        <li>Directed the full lifecycle of utilizing natural teasaponin and advanced nanotechnology to synthesize antibacterial, healing-promotional band-aids.</li>
+                        <li>Authored the project grant proposals, designed precise wet lab experimental protocols, and orchestrated overall team execution timelines.</li>
+                    </ul>
                 </div>
 
             </div>
         </div>
-    </section>
 
-    <section>
-        <h2>Research Experience</h2>
-        <div class="item">
-            <div class="item-title-row">
-                Origin, Evolution, and Transmission Patterns of Hypervirulent Kp Strains <span class="item-duration">Apr. 2025 – Apr. 2026</span>
-            </div>
-            <div class="item-meta-row">Principal Investigator | Provincial Undergraduate Innovation Program</div>
-            <ul>
-                <li>Conducted comparative genomics analysis to track the evolutionary trajectory of hyper-resistant Kp strains. <a class="inline-link" href="https://github.com/lydelle-veynd" target="_blank">[View R Scripts on GitHub]</a></li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title-row">
-                Mitochondria-Targeted Nano-Drug Delivery System against Tumor Multidrug Resistance <span class="item-duration">Mar. 2026</span>
-            </div>
-            <div class="item-meta-row">Core Member | "Challenge Cup" Entrepreneurship Competition</div>
-            <ul>
-                <li>Evaluated an intracellular oxygen carrier system to counteract tumor multidrug resistance.</li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title-row">
-                Mechanism of Lactylation Modulating NSUN2 Expression in Nasopharyngeal Carcinoma <span class="item-duration">Apr. 2023 – Apr. 2024</span>
-            </div>
-            <div class="item-meta-row">Principal Investigator | University Undergraduate Innovation Program</div>
-            <ul>
-                <li>Investigated epigenetic regulatory axes and lactylation patterns under cell metabolic reprogramming.</li>
-            </ul>
-        </div>
-    </section>
+        <div class="content-right">
+            <div class="content-block" style="padding: 30px 25px;">
+                <div class="block-title" style="font-size: 15px; margin-bottom: 20px;">Technical Toolkit</div>
+                
+                <div class="skill-group">
+                    <div class="skill-title">Wet Lab Assays</div>
+                    <div class="skill-tags">
+                        <div class="skill-box">qPCR</div>
+                        <div class="skill-box">Western Blot</div>
+                        <div class="skill-box">ELISA</div>
+                        <div class="skill-box">Plasmid Construction</div>
+                        <div class="skill-box">Cell Culture</div>
+                        <div class="skill-box">Cryopreservation</div>
+                    </div>
+                </div>
 
-    <section>
-        <h2>Technical & Language Skills</h2>
-        <div class="item">
-            <ul>
-                <li><strong>Wet Lab:</strong> qPCR, Western Blot (WB), ELISA, Plasmid Construction, Cell Culture, Cryopreservation.</li>
-                <li><strong>Dry Lab:</strong> R, Python, MATLAB, Generative AI (Gemini/ChatGPT) for data analysis pipelines.</li>
-                <li><strong>Languages:</strong> Native Mandarin, English (CET-6, Minor Degree in English).</li>
-            </ul>
+                <div class="skill-group">
+                    <div class="skill-title">Computational & AI</div>
+                    <div class="skill-tags">
+                        <div class="skill-box">R Language</div>
+                        <div class="skill-box">Python</div>
+                        <div class="skill-box">MATLAB</div>
+                        <div class="skill-box">Prompt Engineering</div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title">Languages</div>
+                    <div class="skill-tags">
+                        <div class="skill-box">Mandarin (Native)</div>
+                        <div class="skill-box">English (CET-6)</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+
+    </div>
+
 </div>
 
 </body>
