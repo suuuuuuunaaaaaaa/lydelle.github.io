@@ -1,236 +1,281 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>孙雅洁 Lydelle Veynd - Personal Page</title>
+    <title>Yajie Sun (Lydelle Veynd) - Curriculum Vitae</title>
     <style>
+        /* Apple-style Minimalist Design System */
         :root {
-            --bg-color: #f9fbfa;
-            --sidebar-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-muted: #7f8c8d;
-            --accent-color: #5E7A8A; /* 灰蓝色 */
-            --accent-light: #f0f4f8;
-            --border-color: #e2e8f0;
+            --primary-color: #1d1d1f;
+            --secondary-color: #86868b;
+            --accent-color: #0071e3;
+            --bg-color: #f5f5f7;
             --card-bg: #ffffff;
+            --border-radius: 12px;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--primary-color); background-color: var(--bg-color);
+            line-height: 1.5; padding: 40px 20px;
         }
 
-        /* Sidebar Styling */
-        .sidebar {
-            width: 280px;
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
-            position: fixed;
-            height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
-            z-index: 100;
+        .container {
+            max-width: 800px; margin: 0 auto; background: var(--card-bg);
+            padding: 50px; border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .profile-img {
-            width: 150px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            background-color: #eee;
-        }
+        .header { display: table; width: 100%; border-bottom: 1px solid #e5e5e7; padding-bottom: 30px; margin-bottom: 35px; }
+        .header-text { display: table-cell; vertical-align: middle; }
+        .header-avatar { display: table-cell; vertical-align: middle; width: 110px; text-align: right; }
+        .header-avatar img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #e5e5e7; }
+        h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
+        
+        .contact-info { font-size: 14px; color: var(--secondary-color); line-height: 1.6; }
+        .contact-info a { color: var(--accent-color); text-decoration: none; }
+        .contact-info a:hover { text-decoration: underline; }
 
-        .sidebar h1 {
-            font-size: 1.4rem;
-            margin: 10px 0 5px 0;
-            color: var(--accent-color);
-        }
+        section { margin-bottom: 35px; }
+        h2 { font-size: 20px; font-weight: 600; border-left: 3px solid var(--primary-color); padding-left: 10px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .sidebar .en-name {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
+        .item { margin-bottom: 22px; }
+        .item-title-row { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+        .item-meta-row { font-size: 13px; color: var(--secondary-color); margin-bottom: 6px; }
+        .item-duration { float: right; font-weight: 400; color: var(--secondary-color); }
 
-        .nav-menu { width: 100%; margin-top: 20px; }
-        .nav-link {
-            display: block;
-            padding: 12px 15px;
-            color: var(--text-main);
-            text-decoration: none;
-            border-radius: 6px;
-            margin-bottom: 5px;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-        }
-        .nav-link:hover {
-            background-color: var(--accent-light);
-            color: var(--accent-color);
-        }
+        ul { list-style-type: none; }
+        li { font-size: 14px; position: relative; padding-left: 15px; margin-bottom: 5px; color: #333336; }
+        li::before { content: "•"; position: absolute; left: 0; color: var(--secondary-color); }
 
-        /* Main Content Styling */
-        .main-content {
-            margin-left: 280px;
-            padding: 60px 50px;
-            max-width: 1000px;
-            flex: 1;
-        }
+        /* Links for interactive modals */
+        .doc-link { font-size: 13px; color: var(--accent-color); text-decoration: none; margin-left: 6px; font-weight: 400; cursor: pointer; }
+        .doc-link:hover { text-decoration: underline; }
+        .action-links { margin-top: 4px; display: block; }
 
-        section { margin-bottom: 60px; }
+        /* Honors List Layout */
+        .honor-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .honor-item { font-size: 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #e5e5e7; padding-bottom: 4px; }
+        .honor-item:last-child { border-bottom: none; }
+        .honor-name { color: #333336; }
 
-        .quote {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--text-muted);
-            border-left: 4px solid var(--accent-color);
-            padding-left: 20px;
-            margin: 0 0 40px 0;
-            line-height: 1.8;
-        }
-
-        h2.section-title {
-            font-size: 1.6rem;
-            color: var(--accent-color);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-        }
-
-        h2.section-title::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 20px;
-        }
-
-        /* Project Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
-        }
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .card-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
-        .card-date { font-size: 0.85rem; color: var(--text-muted); }
-        .card-role {
-            display: inline-block;
-            font-size: 0.75rem;
-            background: var(--accent-light);
-            color: var(--accent-color);
-            padding: 2px 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        /* Skills Tags */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .skill-tag {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
-            .main-content { margin-left: 0; padding: 40px 20px; }
-        }
+        /* Lightbox Modal */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); justify-content: center; align-items: center; cursor: zoom-out; }
+        .modal-content { max-width: 85%; max-height: 85%; border-radius: var(--border-radius); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+        .modal.show .modal-content { transform: scale(1); }
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <!-- 提示：将照片重命名为 profile.jpg 放在同一文件夹下 -->
-        <img src="profile.jpg" alt="孙雅洁" class="profile-img">
-        <h1>孙雅洁</h1>
-        <div class="en-name">Lydelle Veynd</div>
-        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
-            广西医科大学 | 生物技术<br>
-            GPA: 3.74 (1/50)
-        </p>
-        <nav class="nav-menu">
-            <a href="#about" class="nav-link">关于我</a>
-            <a href="#research" class="nav-link">科研经历</a>
-            <a href="#awards" class="nav-link">获奖荣誉</a>
-            <a href="#skills" class="nav-link">专业技能</a>
-        </nav>
-        <div style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-            sereina0828@gmail.com
+
+<div class="container">
+    <div class="header">
+        <div class="header-text">
+            <h1>YAJIE SUN (Lydelle Veynd)</h1>
+            <div class="contact-info">
+                📍 Hongqiao District, Tianjin, China<br>
+                📱 (+86) 173-7740-9737 | ✉️ <a href="mailto:sereina0828@gmail.com">sereina0828@gmail.com</a><br>
+                🌐 <a href="https://lydelle-veynd.github.io/" target="_blank">lydelle-veynd.github.io</a>
+            </div>
         </div>
-    </aside>
+        <div class="header-avatar">
+            <img src="profile.jpg" alt="Profile Image">
+        </div>
+    </div>
 
-    <main class="main-content">
-        <section id="about">
-            <div class="quote">
-                “在湿润的南宁，我于实验室的微观世界里探寻生命的逻辑。从生物技术到生物信息学的跨越，是我对精准医学最诚挚的注脚。”
+    <section>
+        <h2>Education</h2>
+        <div class="item">
+            <div class="item-title-row">
+                Guangxi Medical University <span class="item-duration">Sep. 2023 – Jun. 2027</span>
             </div>
-            <p>
-                我是孙雅洁，2023级生物技术本科生。我致力于通过多模态生物信息学方法解析复杂生命机制。
-                擅长 R 语言自动化工作流与 Nature 风格可视化表达。
-            </p>
-        </section>
-
-        <section id="research">
-            <h2 class="section-title">科研经历</h2>
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">鼻咽癌微环境中乳酸化修饰激活 NSUN2 表达研究</span>
-                    <span class="card-date">2023.04 - 2024.04</span>
-                </div>
-                <span class="card-role">项目负责人 | 校级大创</span>
-                <p>解析“代谢-表观-免疫”调控轴，负责方案设计、实验操作及论文撰写。</p>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Agentic AI For Medical Education (Grind-Med)</span>
-                    <span class="card-date">2026.01</span>
-                </div>
-                <span class="card-role">主讲/核心成员 | 国际交流</span>
-                <p>构建医学生三层学习辅助体系，负责核心创新点提炼及全英文汇报。</p>
-            </div>
-        </section>
-
-        <section id="awards">
-            <h2 class="section-title">获奖荣誉</h2>
+            <div class="item-meta-row">Bachelor of Science in Biotechnology (Major)</div>
             <ul>
-                <li>2025年“外研社·国才杯”英语综合能力赛项 <b>国家级金奖</b></li>
-                <li>2025年 AI 赋能千行百业超级联赛 <b>全国第8名</b></li>
-                <li>2025年全国大学生数学建模竞赛 <b>省级二等奖</b></li>
-                <li>2023-2024学年 <b>广西壮族自治区人民政府奖学金</b></li>
+                <li>GPA: 3.74 / 4.0 | Ranking: 1 / 50</li>
             </ul>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title">专业技能</h2>
-            <div class="skills-grid">
-                <div class="skill-tag">R / Python / MATLAB</div>
-                <div class="skill-tag">qPCR / WB / ELISA</div>
-                <div class="skill-tag">基因组学分析</div>
-                <div class="skill-tag">Nature Style 绘图</div>
-                <div class="skill-tag">学术英语汇报</div>
+        </div>
+        <div class="item">
+            <div class="item-title-row">
+                Guangxi Medical University <span class="item-duration">Sep. 2024 – Jun. 2026</span>
             </div>
-        </section>
-    </main>
+            <div class="item-meta-row">Bachelor of Arts in English (Minor)</div>
+            <ul>
+                <li>GPA: 3.7 / 4.0</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Honors & Awards</h2>
+        <div class="honor-list">
+            <div class="honor-item">
+                <span class="honor-name">National Encouragement Scholarship (2025-2026)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0001.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Excellent Communist Youth League Cadre (2025-2026)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0002.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">National Encouragement Scholarship (2024-2025)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0003.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Merit Student (2024-2025)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0004.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Advanced Individual of "Sanxiaxiang" Social Practice (2024-2025)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0005.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Excellent Club Backbone (2024-2025)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0006.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Government Scholarship of Guangxi Zhuang Autonomous Region (2023-2024)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_1392.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Excellent Student Cadre (2023-2024)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0008.JPG')">[View Certificate]</a>
+            </div>
+            <div class="honor-item">
+                <span class="honor-name">Excellent Communist Youth League Member (2023-2024)</span>
+                <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_0009.JPG')">[View Certificate]</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Competitions</h2>
+        <div class="item">
+            <div class="item-title-row">
+                AI-Driven Traditional Chinese Medicine (TCM) Quality Monitoring System <span class="item-duration">2025</span>
+            </div>
+            <div class="item-meta-row">Team Leader | AI Empowering Industries Super League</div>
+            <ul>
+                <li><strong>Award:</strong> National Gold Medal (Ranked 8 / 2000) <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
+                <li>Coordinated the development of a multi-modal AI identification engine and a database for TCM traceability.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="item-title-row">
+                FLTRP·ETIC Cup English Comprehensive Ability Competition <span class="item-duration">2025</span>
+            </div>
+            <div class="item-meta-row">Participant | National Level</div>
+            <ul>
+                <li><strong>Award:</strong> National Gold Medal <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="item-title-row">
+                Mathematical Modeling of Multi-Light Interference Based on Infrared Interferometry <span class="item-duration">2025</span>
+            </div>
+            <div class="item-meta-row">Core Member | National Undergraduate Mathematical Modeling Contest</div>
+            <ul>
+                <li><strong>Award:</strong> Provincial Second Prize <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="item-title-row">
+                Creative Painting on Petri Dishes Competition <span class="item-duration">2023</span>
+            </div>
+            <div class="item-meta-row">Core Member | Biological Science and Engineering Innovation Contest</div>
+            <ul>
+                <li><strong>Award:</strong> Provincial First Prize <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_xxxx.JPG')">[View Certificate]</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Research Experience</h2>
+        
+        <div class="item">
+            <div class="item-title-row">
+                Agentic AI For Medical Education - Grind-Med <span class="item-duration">Jan. 2026</span>
+            </div>
+            <div class="item-meta-row">
+                Project Leader & Speaker | International Academic Exchange Project
+                <span class="action-links">
+                    <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_cert.JPG')">[View Certificate]</a>
+                    <a class="doc-link" onclick="openModal('assets/img/certificates/IMG_photo.JPG')">[View Presentation Photo]</a>
+                </span>
+            </div>
+            <ul>
+                <li>Developed a learning support framework powered by Agentic AI to foster clinical reasoning for medical students.</li>
+                <li>Extracted core project innovations, formulated the final project summary, and served as the English presenter.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-title-row">
+                Origin, Evolution, and Transmission Patterns of Hypervirulent Kp Strains <span class="item-duration">Apr. 2025 – Apr. 2026</span>
+            </div>
+            <div class="item-meta-row">
+                Principal Investigator | Provincial Undergraduate Innovation Program
+                <span class="action-links">
+                    <a class="doc-link" onclick="openModal('assets/img/certificates/kp_draft.jpg')">[View Draft Manuscript]</a>
+                    <a class="doc-link" href="https://github.com/lydelle-veynd" target="_blank">[View R Scripts on GitHub]</a>
+                </span>
+            </div>
+            <ul>
+                <li>Conducted comparative genomics analysis to track the evolutionary trajectory of hyper-resistant Kp strains.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-title-row">
+                Mitochondria-Targeted Nano-Drug Delivery System against Tumor Multidrug Resistance <span class="item-duration">Mar. 2026</span>
+            </div>
+            <div class="item-meta-row">
+                Core Member | "Challenge Cup" Entrepreneurship Competition
+                <span class="action-links">
+                    <a class="doc-link" onclick="openModal('assets/img/certificates/challenge_model.jpg')">[View Financial Model]</a>
+                </span>
+            </div>
+            <ul>
+                <li>Evaluated a drug-repurposing strategy utilizing an intracellular oxygen carrier system to counteract multidrug resistance.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-title-row">
+                Mechanism of Lactylation Modulating NSUN2 Expression in Nasopharyngeal Carcinoma <span class="item-duration">Apr. 2023 – Apr. 2024</span>
+            </div>
+            <div class="item-meta-row">
+                Principal Investigator | University Undergraduate Innovation Program
+                <span class="action-links">
+                    <a class="doc-link" onclick="openModal('assets/img/certificates/nsun2_proposal.jpg')">[View Research Proposal]</a>
+                </span>
+            </div>
+            <ul>
+                <li>Investigated mechanisms through which lactylation activates NSUN2 expression under metabolic reprogramming.</li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<div id="certModal" class="modal" onclick="closeModal()">
+    <img class="modal-content" id="imgTarget">
+</div>
+
+<script>
+    function openModal(imgSrc) {
+        const modal = document.getElementById('certModal');
+        const modalImg = document.getElementById('imgTarget');
+        modal.style.display = "flex";
+        modalImg.src = imgSrc;
+        setTimeout(() => { modal.classList.add('show'); }, 10);
+    }
+    function closeModal() {
+        const modal = document.getElementById('certModal');
+        modal.classList.remove('show');
+        setTimeout(() => { modal.style.display = "none"; }, 300);
+    }
+</script>
 </body>
 </html>
